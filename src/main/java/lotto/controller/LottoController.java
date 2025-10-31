@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.BuyAmount;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.util.InputParser;
 import lotto.view.InputView;
@@ -23,10 +24,10 @@ public class LottoController {
         String rawBuyAmount = inputView.inputBuyAmount();
         Lottos lottos = lottoService.buyLotto(rawBuyAmount);
         // 당첨 번호 입력
-
-        // 검증
-
+        String rawWinningNumbers = inputView.inputWinningNumber();
+        WinningNumbers winningNumbers = lottoService.createWinningNumbers(rawWinningNumbers);
         // 보너스 번호 입력
+
 
         // 검증
     }
