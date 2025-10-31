@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.BuyAmount;
+import lotto.domain.Lottos;
 import lotto.service.LottoService;
 import lotto.util.InputParser;
 import lotto.view.InputView;
@@ -16,19 +17,20 @@ public class LottoController {
         this.inputView = inputView;
         this.outputView = outputView;
     }
-    // 구입 금액 입력
 
-    // 검증
+    public void run(){
+        // 구입 금액 입력
+        String rawBuyAmount = inputView.inputBuyAmount();
+        Lottos lottos = lottoService.buyLotto(rawBuyAmount);
+        // 당첨 번호 입력
 
-    // 구입 갯수 DTO로 담아서 서비스로 넘김 -> 로또 도메인에서 랜던값 생성
+        // 검증
 
-    // 당첨 번호 입력
+        // 보너스 번호 입력
 
-    // 검증
+        // 검증
+    }
 
-    // 보너스 번호 입력
-
-    // 검증
 
 
 
