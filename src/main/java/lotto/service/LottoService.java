@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.BonusNumber;
 import lotto.domain.BuyAmount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
@@ -36,5 +37,10 @@ public class LottoService {
                 .filter(s -> !s.isEmpty())
                 .map(Integer::parseInt)
                 .toList());
+    }
+
+    public BonusNumber createBonusNumber(String rawBonusNumber){
+        int bonusNumber = Integer.parseInt(rawBonusNumber);
+        return new BonusNumber(bonusNumber);
     }
 }
