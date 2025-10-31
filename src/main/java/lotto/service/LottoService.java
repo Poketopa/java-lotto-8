@@ -1,11 +1,14 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.BuyAmount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.util.InputParser;
 
 public class LottoService {
@@ -24,5 +27,14 @@ public class LottoService {
             lottos.add(lottoFactory.generateLotto());
         }
         return new Lottos(lottos);
+    }
+
+    public WinningNumbers createWinningNumbers(String rawWinningNumbers){
+        String[] rawWinningNumbersList = rawWinningNumbers.split(",");
+        return new WinningNumbers(Arrays.stream(rawWinningNumbersList)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .map(Integer::parseInt)
+                .toList());
     }
 }
