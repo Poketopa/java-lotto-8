@@ -1,12 +1,13 @@
 package lotto.util;
 
 import lotto.domain.Prize;
+import lotto.domain.LottoInfo;
 
 public class WinningChecker {
     private WinningChecker(){}
 
     public static Prize checkWinning(int correctNumberCount, boolean isBonusNumberCorrect){
-        if(correctNumberCount == 6){
+        if(correctNumberCount == LottoInfo.LOTTO_SIZE){
             return Prize.PRIZE_FIRST;
         }
         if(correctNumberCount == 5 && isBonusNumberCorrect){
