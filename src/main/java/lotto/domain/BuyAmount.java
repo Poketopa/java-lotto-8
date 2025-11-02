@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ErrorCode;
+
 public class BuyAmount {
     private final int buyAmount;
 
@@ -15,13 +17,13 @@ public class BuyAmount {
 
     private void checkNegativeNumber(int buyAmount){
         if(buyAmount <= 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.NEGATIVE_BUY_AMOUNT.message());
         }
     }
 
     private void checkMultipleOfThousand(int buyAmount){
         if(buyAmount % 1000 != 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.WINNING_NUMBER_IS_NOT_MULTIPLE_OF_THOUSAND.message());
         }
     }
 
