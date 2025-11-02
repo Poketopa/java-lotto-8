@@ -1,12 +1,11 @@
 package lotto.controller;
 
 import lotto.domain.BonusNumber;
-import lotto.domain.BuyAmount;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoResult;
+import lotto.dto.ResultResopnse;
 import lotto.service.LottoService;
-import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,7 +25,7 @@ public class LottoController {
         String rawBuyAmount = inputView.inputBuyAmount();
         Lottos lottos = lottoService.buyLotto(rawBuyAmount);
         // 구입 개수 출력
-        outputView.printGeneratedLotto(new LottoResult(lottos.getBuyAmout(), lottos.getLottos()));
+        outputView.printGeneratedLotto(new LottoResult(lottos.getBuyAmout(), lottos.getLottosToString()));
 
         // 당첨 번호 입력
         String rawWinningNumbers = inputView.inputWinningNumber();
@@ -35,6 +34,7 @@ public class LottoController {
         String rawBonusNumber = inputView.inputBonusNumber();
         BonusNumber bonusNumber = lottoService.createBonusNumber(rawBonusNumber);
 
-
+        ResultResopnse resultResponse = lottoService.getTotalPrize(lottos, winningNumbers, bonusNumber);
+        outputView.printLottoResult(resultResponse);
     }
 }
