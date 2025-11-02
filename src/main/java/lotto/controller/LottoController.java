@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoResult;
 import lotto.dto.ResultResopnse;
+import lotto.exception.LottoException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,20 +23,35 @@ public class LottoController {
     }
 
     public void run(){
-        // 구입 금액 입력
-        String rawBuyAmount = inputView.inputBuyAmount();
-        Lottos lottos = lottoService.buyLotto(rawBuyAmount);
-        // 구입 개수 출력
+        Lottos lottos = buyLottos();
         outputView.printGeneratedLotto(new LottoResult(lottos.getBuyAmout(), lottos.getLottosToString()));
 
-        // 당첨 번호 입력
-        String rawWinningNumbers = inputView.inputWinningNumber();
-        WinningNumbers winningNumbers = lottoService.createWinningNumbers(rawWinningNumbers);
-        // 보너스 번호 입력
-        String rawBonusNumber = inputView.inputBonusNumber();
-        BonusNumber bonusNumber = lottoService.createBonusNumber(rawBonusNumber);
+        WinningNumbers winningNumbers = createWinningNumbers();
+        BonusNumber bonusNumber = createBonusNumber(winningNumbers);
 
         ResultResopnse resultResponse = lottoService.getTotalPrize(lottos, winningNumbers, bonusNumber);
         outputView.printLottoResult(resultResponse);
+    }
+
+    private Lottos buyLottos(){
+        return retryUntilNoException(() -> lottoService.buyLottos(inputView.inputBuyAmount()));
+    }
+
+    private WinningNumbers createWinningNumbers(){
+        return retryUntilNoException(() -> lottoService.createWinningNumbers(inputView.inputWinningNumber()));
+    }
+
+    private BonusNumber createBonusNumber(WinningNumbers winningNumbers){
+        return retryUntilNoException(() -> lottoService.createBonusNumber(inputView.inputBonusNumber(), winningNumbers));
+    }
+
+    private <T> T retryUntilNoException(Supplier<T> method) {
+        while(true){
+            try {
+                return method.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
