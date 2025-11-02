@@ -6,7 +6,6 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoResult;
 import lotto.dto.ResultResopnse;
-import lotto.exception.LottoException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
