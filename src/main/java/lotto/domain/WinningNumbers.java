@@ -13,4 +13,11 @@ public class WinningNumbers {
     private void validate(List<Integer> winningNumbers){
 
     }
+
+    public boolean contains(int inputNumber){
+        if(winningNumbers.contains(inputNumber)){
+            return true;
+        }
+        return false;
+    }
 }
