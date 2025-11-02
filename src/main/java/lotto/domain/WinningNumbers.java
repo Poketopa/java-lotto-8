@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,21 +21,21 @@ public class WinningNumbers {
 
     private void checkWinningNumberRange(List<Integer> winningNumbers){
         for(int winningNumber : winningNumbers){
-            if(winningNumber < 1 || winningNumber > 45){
+            if(winningNumber < LottoInfo.LOTTO_MIN || winningNumber > LottoInfo.LOTTO_MAX){
                 throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_RANGE.message());
             }
         }
     }
 
     private void checkWinningNumberSize(List<Integer> winningNumbers) {
-        if(winningNumbers.size() != 6){
-            throw new IllegalAccessError(ErrorCode.INVALID_WINNING_NUMBER_SIZE.message());
+        if(winningNumbers.size() != LottoInfo.LOTTO_SIZE){
+            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_SIZE.message());
         }
     }
 
     private void checkWinningNumberDuplication(List<Integer> winningNumbers){
         Set<Integer> set = new HashSet<>(winningNumbers);
-        if(set.size() != 6){
+        if(set.size() != LottoInfo.LOTTO_SIZE){
             throw new IllegalArgumentException(ErrorCode.WINNING_NUMBER_DUPLICATION.message());
         }
     }
