@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +17,14 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(int inputNumber){
+        if(numbers.contains(inputNumber)){
+            return true;
+        }
+        return false;
+    }
+
+    public List<Integer> getNumbers(){
+        return new ArrayList<>(numbers);
+    }
 }
