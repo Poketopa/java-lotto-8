@@ -8,12 +8,7 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
-        validate(lottos);
         this.lottos = lottos;
-    }
-
-    private void validate(List<Lotto> lottos){
-
     }
 
     public List<Lotto> getLottos(){
