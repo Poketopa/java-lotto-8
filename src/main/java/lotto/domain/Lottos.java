@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,11 @@ public class Lottos {
 
     }
 
-    public List<String> getLottos(){
+    public List<Lotto> getLottos(){
+        return new ArrayList<>(lottos);
+    }
+
+    public List<String> getLottosToString(){
         return lottos.stream()
                 .map(Lotto::toString)
                 .collect(Collectors.toList());
