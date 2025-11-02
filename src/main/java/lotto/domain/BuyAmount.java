@@ -26,6 +26,6 @@ public class BuyAmount {
     }
 
     public int getBuyAmount(){
-        return buyAmount;
+        return buyAmount / 1000;
     }
 }
