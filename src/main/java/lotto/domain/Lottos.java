@@ -22,8 +22,11 @@ public class Lottos {
 
     public List<String> getLottosToString(){
         return lottos.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.toList());
+                .map(lotto -> "[" + lotto.getNumbers().stream()
+                        .sorted()
+                        .map(String::valueOf)
+                        .collect(java.util.stream.Collectors.joining(", ")) + "]")
+                .collect(java.util.stream.Collectors.toList());
     }
 
     public int getBuyAmout(){
