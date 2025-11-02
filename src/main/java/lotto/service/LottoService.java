@@ -71,8 +71,8 @@ public class LottoService {
         int totalLottoBuyPrize = LottoInfo.LOTTO_PRICE * lottos.getBuyAmout();
         totalWinningPrize = getTotalWinningPrize(totalWinningPrize, winningResult);
         BigDecimal profitRate = BigDecimal.valueOf(totalWinningPrize)
-                .divide(BigDecimal.valueOf(totalLottoBuyPrize), DECIMAL_POINT, RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(HUNDRED));
+                .multiply(BigDecimal.valueOf(HUNDRED))
+                .divide(BigDecimal.valueOf(totalLottoBuyPrize), DECIMAL_POINT, RoundingMode.HALF_UP);
 
         return new ResultResopnse(winningResult, profitRate);
     }
