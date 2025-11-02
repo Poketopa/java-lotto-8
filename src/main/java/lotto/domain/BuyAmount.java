@@ -22,12 +22,12 @@ public class BuyAmount {
     }
 
     private void checkMultipleOfThousand(int buyAmount){
-        if(buyAmount % 1000 != 0){
-            throw new IllegalArgumentException(ErrorCode.WINNING_NUMBER_IS_NOT_MULTIPLE_OF_THOUSAND.message());
+        if(buyAmount % LottoInfo.LOTTO_PRICE != 0){
+            throw new IllegalArgumentException(ErrorCode.BUY_PRICE_IS_NOT_MULTIPLE_OF_THOUSAND.message());
         }
     }
 
     public int getBuyAmount(){
-        return buyAmount / 1000;
+        return buyAmount / LottoInfo.LOTTO_PRICE;
     }
 }
