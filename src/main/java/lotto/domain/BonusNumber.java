@@ -15,7 +15,7 @@ public class BonusNumber {
     }
 
     private void checkRange(int bonusNumber){
-        if(bonusNumber < 1 || bonusNumber > 45){
+        if(bonusNumber < LottoInfo.LOTTO_MIN || bonusNumber > LottoInfo.LOTTO_MAX){
             throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_RANGE.message());
         }
     }
