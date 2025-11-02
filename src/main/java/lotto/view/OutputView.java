@@ -23,5 +23,6 @@ public class OutputView {
         System.out.println(String.format(Messages.PRIZE_THIRD, lottoResult.getOrDefault(Prize.PRIZE_THIRD, 0)));
         System.out.println(String.format(Messages.PRIZE_SECOND, lottoResult.getOrDefault(Prize.PRIZE_SECOND, 0)));
         System.out.println(String.format(Messages.PRIZE_FIRST, lottoResult.getOrDefault(Prize.PRIZE_FIRST, 0)));
+        System.out.printf(Messages.YIELD_MESSAGE + "%n", profitRate.doubleValue());
     }
 }
