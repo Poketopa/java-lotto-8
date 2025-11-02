@@ -15,6 +15,8 @@ import lotto.domain.Prize;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningResult;
 import lotto.dto.ResultResopnse;
+import lotto.exception.ErrorCode;
+import lotto.exception.error.InvalidInputFormatException;
 import lotto.util.InputParser;
 import lotto.util.WinningChecker;
 
@@ -25,8 +27,13 @@ public class LottoService {
         this.lottoFactory = lottoFactory;
     }
 
-    public Lottos buyLotto(String rawBuyAmount){
-        BuyAmount buyAmount = new BuyAmount(InputParser.parseBuyAmount(rawBuyAmount));
+    public Lottos buyLottos(String rawBuyAmount){
+        BuyAmount buyAmount;
+        try{
+            buyAmount = new BuyAmount(InputParser.parseBuyAmount(rawBuyAmount));
+        } catch(NumberFormatException e){
+            throw new InvalidInputFormatException(ErrorCode.INVALID_INPUT_FORMAT.message());
+        }
 
         int lottoCount = buyAmount.getBuyAmount();
         List<Lotto> lottos = new ArrayList<>();
@@ -45,8 +52,13 @@ public class LottoService {
                 .toList());
     }
 
-    public BonusNumber createBonusNumber(String rawBonusNumber){
+    public BonusNumber createBonusNumber(String rawBonusNumber, WinningNumbers winningNumbers){
         int bonusNumber = Integer.parseInt(rawBonusNumber);
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.message());
+        }
+
         return new BonusNumber(bonusNumber);
     }
 
