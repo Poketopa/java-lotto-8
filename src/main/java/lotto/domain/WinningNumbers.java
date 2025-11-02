@@ -13,35 +13,39 @@ public class WinningNumbers {
         this.winningNumbers = winningNumbers;
     }
 
-    private void validate(List<Integer> winningNumbers){
+    private void validate(List<Integer> winningNumbers) {
         checkWinningNumberRange(winningNumbers);
         checkWinningNumberSize(winningNumbers);
         checkWinningNumberDuplication(winningNumbers);
     }
 
-    private void checkWinningNumberRange(List<Integer> winningNumbers){
-        for(int winningNumber : winningNumbers){
-            if(winningNumber < LottoInfo.LOTTO_MIN || winningNumber > LottoInfo.LOTTO_MAX){
-                throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_RANGE.message());
-            }
+    private void checkWinningNumberRange(List<Integer> winningNumbers) {
+        for (int winningNumber : winningNumbers) {
+            checkNumberRange(winningNumber);
+        }
+    }
+
+    private static void checkNumberRange(int winningNumber) {
+        if (winningNumber < LottoInfo.LOTTO_MIN || winningNumber > LottoInfo.LOTTO_MAX) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_RANGE.message());
         }
     }
 
     private void checkWinningNumberSize(List<Integer> winningNumbers) {
-        if(winningNumbers.size() != LottoInfo.LOTTO_SIZE){
+        if (winningNumbers.size() != LottoInfo.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_SIZE.message());
         }
     }
 
-    private void checkWinningNumberDuplication(List<Integer> winningNumbers){
+    private void checkWinningNumberDuplication(List<Integer> winningNumbers) {
         Set<Integer> set = new HashSet<>(winningNumbers);
-        if(set.size() != LottoInfo.LOTTO_SIZE){
+        if (set.size() != LottoInfo.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorCode.WINNING_NUMBER_DUPLICATION.message());
         }
     }
 
-    public boolean contains(int inputNumber){
-        if(winningNumbers.contains(inputNumber)){
+    public boolean contains(int inputNumber) {
+        if (winningNumbers.contains(inputNumber)) {
             return true;
         }
         return false;

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -11,11 +10,11 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return new ArrayList<>(lottos);
     }
 
-    public List<String> getLottosToString(){
+    public List<String> getLottosToString() {
         return lottos.stream()
                 .map(lotto -> "[" + lotto.getNumbers().stream()
                         .sorted()
@@ -24,7 +23,7 @@ public class Lottos {
                 .collect(java.util.stream.Collectors.toList());
     }
 
-    public int getBuyAmout(){
+    public int getBuyAmout() {
         return lottos.size();
     }
 }

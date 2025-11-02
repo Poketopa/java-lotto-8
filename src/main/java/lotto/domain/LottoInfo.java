@@ -6,7 +6,8 @@ public final class LottoInfo {
     public static final int LOTTO_MAX = 45;
     public static final int LOTTO_PRICE = 1000;
 
-    private LottoInfo() {}
+    private LottoInfo() {
+    }
 }
 
 

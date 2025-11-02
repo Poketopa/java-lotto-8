@@ -10,22 +10,22 @@ public class WinningResult {
         this.winningResult = winningResult;
     }
 
-    public void put(Prize prize){
+    public void put(Prize prize) {
         winningResult.put(prize, winningResult.getOrDefault(prize, 0) + 1);
     }
 
-    public int get(Prize prize){
+    public int get(Prize prize) {
         return winningResult.get(prize);
     }
 
-    public boolean checkPrize(Prize prize){
-        if(winningResult.containsKey(prize)){
+    public boolean checkPrize(Prize prize) {
+        if (winningResult.containsKey(prize)) {
             return true;
         }
         return false;
     }
 
-    public Map<Prize, Integer> getResult(){
+    public Map<Prize, Integer> getResult() {
         return new HashMap<>(winningResult);
     }
 }

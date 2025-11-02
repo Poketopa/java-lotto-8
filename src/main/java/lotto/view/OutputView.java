@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.domain.Prize;
 import lotto.dto.LottoResult;
 import lotto.dto.ResultResopnse;
@@ -13,7 +12,7 @@ public class OutputView {
         lottoResult.lottos().forEach(System.out::println);
     }
 
-    public void printLottoResult(ResultResopnse resultResopnse){
+    public void printLottoResult(ResultResopnse resultResopnse) {
         Map<Prize, Integer> lottoResult = resultResopnse.winningResult().getResult();
         BigDecimal profitRate = resultResopnse.profitRate();
 

@@ -21,7 +21,7 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void run(){
+    public void run() {
         Lottos lottos = buyLottos();
         outputView.printGeneratedLotto(new LottoResult(lottos.getBuyAmout(), lottos.getLottosToString()));
 
@@ -32,20 +32,21 @@ public class LottoController {
         outputView.printLottoResult(resultResponse);
     }
 
-    private Lottos buyLottos(){
+    private Lottos buyLottos() {
         return retryUntilNoException(() -> lottoService.buyLottos(inputView.inputBuyAmount()));
     }
 
-    private WinningNumbers createWinningNumbers(){
+    private WinningNumbers createWinningNumbers() {
         return retryUntilNoException(() -> lottoService.createWinningNumbers(inputView.inputWinningNumber()));
     }
 
-    private BonusNumber createBonusNumber(WinningNumbers winningNumbers){
-        return retryUntilNoException(() -> lottoService.createBonusNumber(inputView.inputBonusNumber(), winningNumbers));
+    private BonusNumber createBonusNumber(WinningNumbers winningNumbers) {
+        return retryUntilNoException(
+                () -> lottoService.createBonusNumber(inputView.inputBonusNumber(), winningNumbers));
     }
 
     private <T> T retryUntilNoException(Supplier<T> method) {
-        while(true){
+        while (true) {
             try {
                 return method.get();
             } catch (IllegalArgumentException e) {

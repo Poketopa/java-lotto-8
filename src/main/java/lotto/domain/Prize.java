@@ -10,11 +10,11 @@ public enum Prize {
 
     private final long prizeMoney;
 
-    Prize(long prizeMoney){
+    Prize(long prizeMoney) {
         this.prizeMoney = prizeMoney;
     }
 
-    public long getPrizeMoney(){
+    public long getPrizeMoney() {
         return prizeMoney;
     }
 }

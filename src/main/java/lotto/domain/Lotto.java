@@ -27,8 +27,8 @@ public class Lotto {
     }
 
     private void checkLottoNumberRange(List<Integer> numbers) {
-        for(int lottoNumber : numbers){
-            if(lottoNumber < LottoInfo.LOTTO_MIN || lottoNumber > LottoInfo.LOTTO_MAX){
+        for (int lottoNumber : numbers) {
+            if (lottoNumber < LottoInfo.LOTTO_MIN || lottoNumber > LottoInfo.LOTTO_MAX) {
                 throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_RANGE.message());
             }
         }
@@ -36,19 +36,19 @@ public class Lotto {
 
     private void checkLottoNumberDuplication(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        if(set.size() != LottoInfo.LOTTO_SIZE){
+        if (set.size() != LottoInfo.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_DUPLICATION.message());
         }
     }
 
-    public boolean contains(int inputNumber){
-        if(numbers.contains(inputNumber)){
+    public boolean contains(int inputNumber) {
+        if (numbers.contains(inputNumber)) {
             return true;
         }
         return false;
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
 }

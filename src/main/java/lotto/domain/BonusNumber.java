@@ -10,17 +10,17 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(int bonusNumber){
+    private void validate(int bonusNumber) {
         checkRange(bonusNumber);
     }
 
-    private void checkRange(int bonusNumber){
-        if(bonusNumber < LottoInfo.LOTTO_MIN || bonusNumber > LottoInfo.LOTTO_MAX){
+    private void checkRange(int bonusNumber) {
+        if (bonusNumber < LottoInfo.LOTTO_MIN || bonusNumber > LottoInfo.LOTTO_MAX) {
             throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_RANGE.message());
         }
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

@@ -5,14 +5,16 @@ import java.util.List;
 import lotto.exception.ErrorCode;
 
 public class InputParser {
-    private InputParser(){}
     private static final String COMMA = ",";
 
-    public static int parseBuyAmount(String buyAmount){
+    private InputParser() {
+    }
+
+    public static int parseBuyAmount(String buyAmount) {
         return Integer.parseInt(buyAmount);
     }
 
-    public static List<Integer> parseWinningNumbers(String winningNumbers){
+    public static List<Integer> parseWinningNumbers(String winningNumbers) {
         if (winningNumbers == null) {
             throw new IllegalArgumentException(ErrorCode.INVALID_INPUT_FORMAT.message());
         }
@@ -28,10 +30,10 @@ public class InputParser {
         }
     }
 
-    public static int parseBonusNumber(String bonusNumber){
-        try{
+    public static int parseBonusNumber(String bonusNumber) {
+        try {
             return Integer.parseInt(bonusNumber);
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorCode.INVALID_INPUT_FORMAT.message());
         }
     }

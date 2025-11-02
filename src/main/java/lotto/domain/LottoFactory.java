@@ -9,7 +9,7 @@ public class LottoFactory {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public Lotto generateLotto(){
+    public Lotto generateLotto() {
         List<Integer> numbers = lottoGenerator.generateLotto();
         return new Lotto(numbers);
     }

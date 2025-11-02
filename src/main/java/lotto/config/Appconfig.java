@@ -9,27 +9,27 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Appconfig {
-    public LottoGenerator lottoGenerator(){
+    public LottoGenerator lottoGenerator() {
         return new RandomNumberGenerator();
     }
 
-    public LottoFactory lottoFactory(){
+    public LottoFactory lottoFactory() {
         return new LottoFactory(lottoGenerator());
     }
 
-    public LottoService lottoService(){
+    public LottoService lottoService() {
         return new LottoService(lottoFactory());
     }
 
-    public InputView inputView(){
+    public InputView inputView() {
         return new InputView();
     }
 
-    public OutputView outputView(){
+    public OutputView outputView() {
         return new OutputView();
     }
 
-    public LottoController lottoController(){
+    public LottoController lottoController() {
         return new LottoController(lottoService(), inputView(), outputView());
     }
 }

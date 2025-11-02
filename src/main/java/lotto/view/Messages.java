@@ -15,5 +15,6 @@ public class Messages {
     public static final String PRIZE_FIFTH = "3개 일치 (5,000원) - %d개";
     public static final String YIELD_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    private Messages(){}
+    private Messages() {
+    }
 }
