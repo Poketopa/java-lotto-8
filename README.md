@@ -27,7 +27,9 @@
 - [ ] 입력된 구입 금액이 2,147,483,000 이상인 경우 `IllegalArgumentException`을 발생시킨다.
 - [ ] 입력된 당첨 번호가 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
 - [ ] 입력된 당첨 번호가 1~45의 범위를 넘어선 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 입력된 당첨 번호가 중복된 숫자를 가질 경우 `IllegalArgumentException`을 발생시킨다.
 - [ ] 입력된 보너스 번호가 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [ ] 입력된 보너스 번호가 당첨 번호에 포함될 경우 `IllegalArgumentException`을 발생시킨다.
 
 ### 추가적인 조건
 - [ ] 구입 금액이 0일 경우 잘못된 입력으로 판단한다.
