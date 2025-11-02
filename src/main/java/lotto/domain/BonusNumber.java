@@ -11,4 +11,8 @@ public class BonusNumber {
     private void validate(int bonusNumber){
 
     }
+
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
 }
