@@ -10,10 +10,7 @@ import lotto.dto.ResultResopnse;
 public class OutputView {
     public void printGeneratedLotto(LottoResult lottoResult) {
         System.out.printf(Messages.BUY_COUNT_MESSAGE + "%n", lottoResult.buyAmount());
-        System.out.println("[" + lottoResult.lottos().stream()
-                .sorted()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", ")) + "]");
+        lottoResult.lottos().forEach(System.out::println);
     }
 
     public void printLottoResult(ResultResopnse resultResopnse){
@@ -21,10 +18,10 @@ public class OutputView {
         BigDecimal profitRate = resultResopnse.profitRate();
 
         System.out.println(Messages.WINNING_STAT_MESSAGE);
-        System.out.println(String.format(Messages.PRIZE_FIFTH, lottoResult.get(Prize.PRIZE_FIFTH)));
-        System.out.println(String.format(Messages.PRIZE_FOURTH, lottoResult.get(Prize.PRIZE_FOURTH)));
-        System.out.println(String.format(Messages.PRIZE_THIRD, lottoResult.get(Prize.PRIZE_THIRD)));
-        System.out.println(String.format(Messages.PRIZE_SECOND, lottoResult.get(Prize.PRIZE_SECOND)));
-        System.out.println(String.format(Messages.PRIZE_FIRST, lottoResult.get(Prize.PRIZE_FIRST)));
+        System.out.println(String.format(Messages.PRIZE_FIFTH, lottoResult.getOrDefault(Prize.PRIZE_FIFTH, 0)));
+        System.out.println(String.format(Messages.PRIZE_FOURTH, lottoResult.getOrDefault(Prize.PRIZE_FOURTH, 0)));
+        System.out.println(String.format(Messages.PRIZE_THIRD, lottoResult.getOrDefault(Prize.PRIZE_THIRD, 0)));
+        System.out.println(String.format(Messages.PRIZE_SECOND, lottoResult.getOrDefault(Prize.PRIZE_SECOND, 0)));
+        System.out.println(String.format(Messages.PRIZE_FIRST, lottoResult.getOrDefault(Prize.PRIZE_FIRST, 0)));
     }
 }
