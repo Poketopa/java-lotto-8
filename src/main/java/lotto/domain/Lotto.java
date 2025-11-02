@@ -21,14 +21,14 @@ public class Lotto {
     }
 
     private void checkLottoNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoInfo.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_SIZE.message());
         }
     }
 
     private void checkLottoNumberRange(List<Integer> numbers) {
         for(int lottoNumber : numbers){
-            if(lottoNumber < 1 || lottoNumber > 45){
+            if(lottoNumber < LottoInfo.LOTTO_MIN || lottoNumber > LottoInfo.LOTTO_MAX){
                 throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_RANGE.message());
             }
         }
@@ -36,7 +36,7 @@ public class Lotto {
 
     private void checkLottoNumberDuplication(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        if(set.size() != 6){
+        if(set.size() != LottoInfo.LOTTO_SIZE){
             throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_DUPLICATION.message());
         }
     }
