@@ -22,16 +22,24 @@
 - [x] 당첨 통계를 출력한다.
 
 ### 예외처리
-- [ ] 입력된 구입 금액이 양의 정수가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
-- [ ] 입력된 구입 금액이 1,000으로 나누어 떨어지지 않는 경우 `IllegalArgumentException`을 발생시킨다.
-- [ ] 입력된 구입 금액이 2,147,483,000 이상인 경우 `IllegalArgumentException`을 발생시킨다.
-- [ ] 입력된 당첨 번호가 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
-- [ ] 입력된 당첨 번호가 1~45의 범위를 넘어선 경우 `IllegalArgumentException`을 발생시킨다.
-- [ ] 입력된 당첨 번호가 중복된 숫자를 가질 경우 `IllegalArgumentException`을 발생시킨다.
-- [ ] 입력된 보너스 번호가 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
-- [ ] 입력된 보너스 번호가 당첨 번호에 포함될 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 구입 금액이 양의 정수가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 구입 금액이 1,000으로 나누어 떨어지지 않는 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 구입 금액이 2,147,483,000 이상인 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 로또 번호의 개수가 6이 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 로또 번호가 1~45의 범위를 넘어선 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 로또 번호가 중복된 숫자를 가질 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 당첨 번호의 개수가 6이 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 당첨 번호가 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 당첨 번호가 1~45의 범위를 넘어선 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 당첨 번호가 중복된 숫자를 가질 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 보너스 번호가 숫자가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 보너스 번호가 숫자가 1~45의 범위를 넘어선 경우 `IllegalArgumentException`을 발생시킨다.
+- [x] 입력된 보너스 번호가 당첨 번호에 포함될 경우 `IllegalArgumentException`을 발생시킨다.
 
 ### 추가적인 조건
 - [ ] 구입 금액이 0일 경우 잘못된 입력으로 판단한다.
 - [ ] 구입 금액 자료형은 int로 설정한다. 그러므로 발행할 수 있는 로또의 최대 개수는 2,147,483개이다.
 - [ ] 당첨 번호를 쉼표로 구별할 때 공백은 허용한다
+
+
+1~45, 크기 6 등 상수 처리
