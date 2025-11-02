@@ -3,7 +3,6 @@ package lotto.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.BonusNumber;
@@ -11,17 +10,19 @@ import lotto.domain.BuyAmount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.Lottos;
+import lotto.domain.LottoInfo;
 import lotto.domain.Prize;
 import lotto.domain.WinningNumbers;
 import lotto.domain.WinningResult;
 import lotto.dto.ResultResopnse;
 import lotto.exception.ErrorCode;
-import lotto.exception.error.InvalidInputFormatException;
 import lotto.util.InputParser;
 import lotto.util.WinningChecker;
 
 public class LottoService {
     private final LottoFactory lottoFactory;
+    private static final int DECIMAL_POINT = 2;
+    private static final int HUNDRED = 100;
 
     public LottoService(LottoFactory lottoFactory) {
         this.lottoFactory = lottoFactory;
@@ -32,7 +33,7 @@ public class LottoService {
         try{
             buyAmount = new BuyAmount(InputParser.parseBuyAmount(rawBuyAmount));
         } catch(NumberFormatException e){
-            throw new InvalidInputFormatException(ErrorCode.INVALID_INPUT_FORMAT.message());
+            throw new IllegalArgumentException(ErrorCode.INVALID_INPUT_FORMAT.message());
         }
 
         int lottoCount = buyAmount.getBuyAmount();
@@ -44,21 +45,14 @@ public class LottoService {
     }
 
     public WinningNumbers createWinningNumbers(String rawWinningNumbers){
-        String[] rawWinningNumbersList = rawWinningNumbers.split(",");
-        return new WinningNumbers(Arrays.stream(rawWinningNumbersList)
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .map(Integer::parseInt)
-                .toList());
+        return new WinningNumbers(InputParser.parseWinningNumbers(rawWinningNumbers));
     }
 
     public BonusNumber createBonusNumber(String rawBonusNumber, WinningNumbers winningNumbers){
-        int bonusNumber = Integer.parseInt(rawBonusNumber);
-
+        int bonusNumber = InputParser.parseBonusNumber(rawBonusNumber);
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorCode.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.message());
         }
-
         return new BonusNumber(bonusNumber);
     }
 
@@ -82,15 +76,15 @@ public class LottoService {
         }
         // 수익률 계산
         long totalWinningPrize = 0;
-        int totalLottoBuyPrize = 1000 * lottos.getBuyAmout();
+        int totalLottoBuyPrize = LottoInfo.LOTTO_PRICE * lottos.getBuyAmout();
         for(Prize prize : Prize.values()){
             if(winningResult.checkPrize(prize)){
                 totalWinningPrize += winningResult.get(prize) * prize.getPrizeMoney();
             }
         }
         BigDecimal profitRate = BigDecimal.valueOf(totalWinningPrize)
-                .divide(BigDecimal.valueOf(totalLottoBuyPrize), 2, RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(100));
+                .divide(BigDecimal.valueOf(totalLottoBuyPrize), DECIMAL_POINT, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(HUNDRED));
         return new ResultResopnse(winningResult, profitRate);
     }
 }
