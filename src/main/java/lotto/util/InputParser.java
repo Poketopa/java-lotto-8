@@ -6,6 +6,7 @@ import lotto.exception.ErrorCode;
 
 public class InputParser {
     private InputParser(){}
+    private static final String COMMA = ",";
 
     public static int parseBuyAmount(String buyAmount){
         return Integer.parseInt(buyAmount);
@@ -17,7 +18,7 @@ public class InputParser {
         }
 
         try {
-            return Arrays.stream(winningNumbers.split(","))
+            return Arrays.stream(winningNumbers.split(COMMA))
                     .map(String::trim)
                     .filter(s -> !s.isEmpty())
                     .map(Integer::parseInt)
@@ -28,12 +29,10 @@ public class InputParser {
     }
 
     public static int parseBonusNumber(String bonusNumber){
-        int parsedBonusNumber;
         try{
-            parsedBonusNumber = Integer.parseInt(bonusNumber);
+            return Integer.parseInt(bonusNumber);
         } catch(NumberFormatException e){
             throw new IllegalArgumentException(ErrorCode.INVALID_INPUT_FORMAT.message());
         }
-        return Integer.parseInt(bonusNumber);
     }
 }
