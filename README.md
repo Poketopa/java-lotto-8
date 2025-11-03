@@ -43,6 +43,77 @@
 
 ## 프로젝트 구조
 
+### Application
+#### Application: 
+- 프로그램 시작점 
+- Appconfig로 객체 생성 후 LottoController.run() 실행
+### Config
+#### Appconfig: 
+- 수동 DI 구성 
+- 인스턴스 생성/주입
+### Controller
+#### LottoController: 
+- 콘솔 입출력 흐름 제어   
+- 재시도 루프로 IllegalArgumentException 시 메시지 출력 후 해당 단계부터 재입력  
+- 서비스 호출 및 결과 출력
+### Service
+#### LottoService: 
+- 핵심 비즈니스 로직
+- 구입 금액 파싱/검증 후 로또 생성
+- 당첨 번호/보너스 번호 생성 및 검증
+- 각 로또의 일치 개수/보너스 일치 여부 계산 → 등수 집계 → 총 수익/수익률 계산
+### Domain
+#### Lotto: 
+- 로또 한 장(정수 6개)
+- 개수/범위/중복 검증, 숫자 포함 여부 검증
+#### Lottos: 
+- 구매한 로또 컬렉션
+- 목록/개수 제공
+- 출력 포맷 문자열 생성 (오름차순 정렬된 문자열 리스트)
+#### WinningNumbers: 
+- 당첨 번호 6개
+- 범위/개수/중복 검증, 포함 여부 검증
+#### BonusNumber: 
+- 보너스 번호 1개 
+- 범위 검증, 값 제공
+#### BuyAmount: 
+- 구입 금액 값 객체
+- 양수/1,000원 배수 검증, 구매 장수 계산.
+#### LottoGenerator(interface): 
+- 로또 숫자 생성 전략 인터페이스
+#### RandomNumberGenerator: 
+- Randoms.pickUniqueNumbersInRange로 랜덤 로또 생성 구현
+#### LottoFactory: 
+- 생성 전략을 이용해 Lotto 인스턴스 생성
+#### Prize(enum): 
+- 등수와 상금 정의
+#### WinningResult: 
+- 등수별 집계 맵
+- 등수 추가/조회/존재 검증
+#### LottoInfo: 
+- 상수 정의(사이즈/범위/가격)
+### Util
+#### InputParser: 
+- 문자열 입력 파싱
+- 구입 금액/당첨 번호/보너스 번호 변환 및 형식 오류를 IllegalArgumentException으로 변환
+#### WinningChecker: 
+- 일치 개수/보너스 일치 여부로 Prize 산출 규칙 캡슐화
+### View
+#### InputView: 
+- 안내 메시지 출력 후 Console.readLine()으로 입력 수집
+#### OutputView: 
+- 구매 개수/발행 번호 목록/등수별 집계/총 수익률 출력
+#### Messages: 
+- 모든 출력/에러 메시지 상수
+### DTO
+#### LottoResult: 
+- 구매 개수와 발행 번호 문자열 목록 전달용
+#### ResultResopnse: 
+- 등수 집계(WinningResult)와 수익률(BigDecimal) 전달용
+### Exception
+#### ErrorCode(enum): 
+- “[ERROR] …” 형식의 표준화된 에러 메시지 정의
+
 ### 의존성 다이어그램
 ```mermaid
 classDiagram
