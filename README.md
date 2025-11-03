@@ -114,7 +114,7 @@
 #### ErrorCode(enum): 
 - “[ERROR] …” 형식의 표준화된 에러 메시지 정의
 
-### 의존성 다이어그램
+## 의존성 다이어그램
 ```mermaid
 classDiagram
     direction LR
@@ -187,7 +187,7 @@ classDiagram
     LottoGenerator <|.. RandomNumberGenerator
 ```
 
-### 시퀀스 다이어그램
+## 시퀀스 다이어그램
 ```mermaid
 sequenceDiagram
     autonumber
