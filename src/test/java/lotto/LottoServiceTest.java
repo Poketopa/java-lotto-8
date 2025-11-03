@@ -61,11 +61,10 @@ public class LottoServiceTest {
 
     @Test
     void getTotalPrize_계산() {
-        // 당첨번호: 1~6, 보너스: 7
         LottoService service = serviceWithGenerator(List.of(
-                List.of(1, 2, 3, 4, 5, 6),   // 1등
-                List.of(1, 2, 3, 4, 5, 7),   // 2등(5개+보너스)
-                List.of(1, 2, 3, 4, 5, 8)    // 3등(5개)
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 8)
         ));
         Lottos lottos = service.buyLottos("3000");
         WinningNumbers winningNumbers = service.createWinningNumbers("1,2,3,4,5,6");
